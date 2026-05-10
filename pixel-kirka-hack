@@ -1,0 +1,506 @@
+// ==UserScript==
+// @name         Pixel client for bloxd.io/kirka.io
+// @namespace    http://tampermonkey.net
+// @version      2.0
+// @description  Closet cheat client for bloxd.io (Autoclicker, Auto-E, Fake Aim Assist, CPS Shower, Title)
+// @author       Mardal_
+// @match        https://*.bloxd.io/*
+// @match        https://*.kirka.io/*
+// @match        https://*bloxd.com/*
+// @match        https://*playbloxd.io/*
+// @icon         https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png
+// @grant        none
+// ==/UserScript==
+
+let btn, Gitlink, hud
+window.onerror = function() {
+    alert('SRY there is a problem');
+};
+ // trying to hack the engine of kirka.io .please don't delete or add something only if u know what u are doing...
+window.espEnabled = true;
+window.eng = null;
+
+    Array.isArray = new Proxy(Array.isArray, {
+        apply(target, thisArg, args) {
+        const material = args[0];
+            const result = Reflect.apply(target, thisArg, args);
+        if (window.espEnabled && material?.map?.image?.width === 64) {
+        material.depthTest = false;
+                for (let Mkey in material) {
+                    if (material[Mkey] === 3) {
+                        material[Mkey] = 1;
+                        if (!window.eng) {
+                            alert('✅Kirka Engine captured, now cheats✅');
+                            console.log('Kirka Engine captured, arguments:', args);
+                            window.eng = material;
+                            break;
+                        }
+                        }
+                    }
+                }
+            return result;
+
+        }
+    });
+
+(() => {
+
+    const panele = document.createElement('div');
+    panele.id = 'pixel-client-loading';
+    panele.style.position = 'fixed';
+    panele.style.top = '50%';
+    panele.style.left = '50%';
+    panele.style.transform = 'translate(-50%, -50%)';
+    panele.style.zIndex = '100000';
+    panele.style.backgroundColor = 'rgba(0, 50, 65, 1)';
+    panele.style.color = 'white';
+    panele.style.padding = '15px';
+    panele.style.width = '100%';
+    panele.style.fontSize = '50px';
+    panele.style.height = '100%';
+    panele.style.border = '10px solid cyan';
+    panele.style.borderRadius = '8px';
+    panele.style.fontFamily = 'monospace';
+    panele.style.display = 'block';
+    panele.style.display = 'flex';
+    panele.style.justifyContent = 'center';
+    panele.style.alignItems = 'center';
+    panele.style.textAlign = 'center';
+    panele.innerHTML = 'Welcome to Pixel Client';
+    panele.style.textShadow = '5px 5px 10px white'
+    document.body.appendChild(panele);
+
+     const logo2 = document.createElement('img');
+    logo2.src = 'https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png';
+    logo2.style.position = 'fixed';
+    logo2.style.left = '50%';
+    logo2.style.top = '20%';
+    logo2.style.width = '200px';
+    logo2.style.height = '200px';
+    logo2.style.transform = 'translate(-50%, -50%)';
+    logo2.style.pointerEvents = 'none';
+    logo2.style.display = 'block';
+    logo2.style.zIndex = '1000000';
+    document.body.appendChild(logo2);
+
+    const Xpixel = document.createElement('button');
+    document.body.appendChild(Xpixel);
+    Xpixel.innerHTML = 'OK';
+    Xpixel.style.position = 'fixed';
+    Xpixel.style.top = '70%';
+    Xpixel.style.left = '50%';
+    Xpixel.style.transform = 'transform(-50%, -50%)';
+    Xpixel.style.backgroundColor = 'rgba(0, 50, 65, 1)';
+    Xpixel.style.color = 'blue';
+    Xpixel.style.borderRadius = '15px';
+    Xpixel.style.border = '5px solid cyan';
+    Xpixel.style.padding = '5px';
+    Xpixel.style.zIndex = '100000';
+    Xpixel.style.fontSize = '40px';
+    Xpixel.style.boxShadow = '5px 5px 10px black';
+    Xpixel.onclick = function() {
+        panele.style.display = 'none';
+        Xpixel.style.display = 'none';
+        panel2.style.display = 'block';
+        panel3.style.display = 'block';
+        panel.style.display = 'block';
+        logo2.style.display = 'none';
+        logo.style.display = 'block';
+        pixeltxt.style.display = 'block';
+    };
+
+
+    console.log('🟢 Pixel Client Loaded by Mardal_ 🟢');
+
+    let myButton = document.createElement('button');
+    myButton.innerHTML = 'Menu OFF';
+    myButton.style.position = 'fixed';
+    myButton.style.top = '20px';
+    myButton.style.left = '500px';
+    myButton.style.color = 'white';
+    myButton.style.zIndex = '10000';
+    myButton.style.padding = '10px';
+    myButton.style.cursor = 'pointer';
+    myButton.style.backgroundColor = 'red';
+    myButton.style.border = 'none';
+    myButton.style.borderRadius = '5px';
+    myButton.style.boxShadow = '5px 5px 10px black';
+    myButton.style.fontWeight = 'bold';
+    document.body.appendChild(myButton);
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Shift') {
+            const panel = document.getElementById('pixel-client-home');
+
+            if (panel) {
+            panel.classList.toggle('hidden');
+            }
+        }
+    });
+
+     const panel = document.createElement('div');
+    panel.id = 'pixel-client-home';
+    panel.style.position = 'fixed';
+    panel.style.top = '70px';
+    panel.style.left = '500px';
+    panel.style.zIndex = '10000';
+    panel.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    panel.style.color = 'white';
+    panel.style.padding = '15px';
+    panel.style.width = '220px';
+    panel.style.height = '420px';
+    panel.style.boxShadow = '5px 5px 10px black';
+    panel.style.border = '2px solid cyan';
+    panel.style.borderRadius = '15px';
+    panel.style.fontFamily = 'monospace';
+    panel.style.display = 'none';
+    panel.innerHTML = 'Home - Subscribe to @cartoon-bloxd❤️';
+    document.body.appendChild(panel);
+
+     const panel3 = document.createElement('div');
+    panel3.id = 'pixel-movement';
+    panel3.style.position = 'fixed';
+    panel3.style.top = '70px';
+    panel3.style.left = '200px';
+    panel3.style.zIndex = '10000';
+    panel3.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    panel3.style.color = 'white';
+    panel3.style.padding = '15px';
+    panel3.style.width = '220px';
+    panel3.style.height = '420px';
+    panel3.style.boxShadow = '5px 5px 10px black';
+    panel3.style.border = '2px solid cyan';
+    panel3.style.borderRadius = '15px';
+    panel3.style.fontFamily = 'monospace';
+    panel3.style.display = 'none';
+    panel3.innerHTML = 'Visuals';
+    document.body.appendChild(panel3);
+
+    const debug = (msg) => {
+    const hud = document.createElement('div');
+    hud.innerText = msg;
+
+    hud.style.position = 'fixed';
+    hud.style.top = '90%';
+    hud.style.left = '80%'
+    hud.style.transform = 'translate(-50%, -50%)';
+    hud.style.zIndex = '10000';
+    hud.style.backgroundColor = 'rgba(0,0,0,0.9)';
+    hud.style.color = 'cyan';
+    hud.style.fontSize = '35px';
+    hud.style.padding = '2px';
+    hud.style.borderRadius = '10px';
+    hud.style.border = '2px solid cyan';
+    hud.style.padding = '5px';
+    hud.style.boxShadow = '8px 8px 8px cyan';
+    hud.style.textShadow = '2px 2px 4px cyan';
+    document.body.appendChild(hud);
+
+        hud.style.opacity = '0';
+        hud.style.transition = 'all 0.4s ease';
+
+    setTimeout(() => {
+        hud.style.opacity = '1';
+        hud.style.transform = 'translate(-50%, -50%)';
+    }, 10);
+
+    setTimeout(() => {
+        hud.style.opacity = '0';
+        hud.style.transform = 'translate(-50%, -50%)';
+    }, 3000);
+
+
+ setTimeout(() => {
+        hud.remove();
+    }, 3400);
+    }
+
+    const panel2 = document.createElement('div');
+    panel2.id = 'panel-combat';
+    panel2.style.position = 'fixed';
+    panel2.style.top = '47%';
+    panel2.style.left = '70%';
+    panel2.style.transform = 'translate(-50%, -50%)';
+    panel2.style.zIndex = '10000';
+    panel2.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    panel2.style.color = 'white';
+    panel2.style.padding = '15px';
+    panel2.style.width = '220px';
+    panel2.style.height = '420px';
+    panel2.style.boxShadow = '5px 5px 10px black';
+    panel2.style.border = '2px solid cyan';
+    panel2.style.borderRadius = '15px';
+    panel2.style.fontFamily = 'monospace';
+    panel2.style.display = 'none';
+    panel2.innerHTML = 'Combat';
+    document.body.appendChild(panel2);
+
+    myButton.onclick = function() {
+        if (panel.style.display === 'none') {
+            debug('menu ON');
+            panel.style.display = 'block';
+            panel3.style.display = 'block';
+            panel2.style.display = 'block';
+            myButton.innerHTML = 'Menu ON';
+            myButton.style.backgroundColor = 'green';
+        } else {
+            debug('menu OFF');
+            panel.style.display = 'none';
+            panel2.style.display = 'none';
+            panel3.style.display = 'none';
+            myButton.innerHTML = 'Menu OFF';
+            myButton.style.backgroundColor = 'red';
+        }
+    };
+    function createMenuButton(text, parentPanel) {
+        let btn = document.createElement('button');
+        btn.innerHTML = text;
+
+        btn.style.width = '100%';
+        btn.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        btn.style.color = 'white';
+        btn.style.border = '1px solid cyan';
+        btn.style.padding = '10px';
+        btn.style.marginTop = '8px';
+        btn.style.cursor = 'pointer';
+        btn.style.borderRadius = '15px';
+        btn.style.transition = '0.3s';
+        parentPanel.appendChild(btn);
+        return btn;
+    }
+    let ESP = createMenuButton('ESP AYWAYS ON (only for kirka.io)', panel3);
+    ESP.onclick = function() {
+        if (window.eng) {
+        debug('ESP ON | Visuals');
+            window.espEnabled = true;
+        } else {
+            window.espEnabled = false;
+            debug('still trying to hack to give u ESP...');
+        }
+    }
+
+    let yellow = createMenuButton('yellow color : [OFF]', panel3);
+    yellow.onclick = function() {
+        let On = yellow.innerHTML.includes('[OFF]');
+        yellow.innerHTML = On ? 'yellow color : [ON]' : 'yellow color : [OFF]';
+        yellow.style.backgroundColor = On ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.7)';
+        const color = On ? 'yellow' : 'cyan';
+        [panel, panel2, panel3].forEach(p => {
+            p.style.border = `5px solid ${color}`;
+            p.style.boxShadow = '2px solid %{color}';
+        });
+        document.querySelectorAll('button').forEach(a => {
+            a.style.border = `2px solid ${color}`;
+        });
+        text.style.color = `${color}`;
+        debug(On ? 'yellow color ON | Visuals' : 'yellow color OFF | Visuals');
+    };
+
+
+    let green = createMenuButton('green color : [OFF]', panel3);
+    green.onclick = function() {
+        let On = green.innerHTML.includes('[OFF]');
+        green.innerHTML = On ? 'green color : [ON]' : 'green color : [OFF]';
+        green.style.backgroundColor = On ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.7)';
+        const color = On ? 'green' : 'cyan';
+        [panel, panel2, panel3].forEach(p => {
+            p.style.border = `5px solid ${color}`;
+            p.style.boxShadow = '2px solid %{color}';
+        });
+        document.querySelectorAll('button').forEach(a => {
+            a.style.border = `2px solid ${color}`;
+        });
+        text.style.color = `${color}`;
+        debug(On ? 'green color ON | Visuals' : 'green color OFF | Visuals');
+
+    };
+    let red = createMenuButton('red color : [OFF]', panel3);
+    red.onclick = function() {
+        let isOn = red.innerHTML.includes('[OFF]');
+        red.innerHTML = isOn ? 'red color : [ON]' : 'red color : [OFF]';
+        red.style.backgroundColor = isOn ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.7)';
+        const color = isOn ? 'red' : 'cyan';
+        [panel, panel2, panel3].forEach(p => {
+            p.style.border = `5px solid ${color}`;
+            p.style.boxShadow = '2px solid %{color}';
+        });
+        document.querySelectorAll('button').forEach(a => {
+            a.style.border = `2px solid ${color}`;
+        });
+        text.style.color = `${color}`;
+        debug(isOn ? 'red color ON' : 'red color OFF');
+
+    };
+
+    let YTlink = createMenuButton('YT link here : [OFF]', panel);
+    YTlink.onclick = function() {
+        let isOn = YTlink.innerHTML.includes('[OFF]');
+        window.open('https://www.youtube.com/@cartoon-bloxd', '_blank');
+        YTlink.style.backgroundColor = isOn ? 'green' : 'rgba(0,0,0,0.7)';
+        YTlink.innerHTML = isOn ? 'YT link here : [ON]' : 'YT ink here : [OFF]';
+        debug(isOn ? 'YT link open | Home' : 'YT link open | Home');
+    }
+
+    let Gitlink = createMenuButton('github link here : [OFF]', panel);
+    Gitlink.onclick = function() {
+        let isOn = Gitlink.innerHTML.includes('[OFF]');
+        window.open('https://github.com/esdrastetangtetang-ctrl', '_blank');
+        Gitlink.style.backgroundColor = isOn ? 'green' : 'rgba(0,0,0,0.7)';
+        Gitlink.innerHTML = isOn ? 'github link here : [ON]' : 'github link here : [OFF]';
+        debug(isOn ? 'Github link open | Home' : 'Github link open | Home');
+    };
+
+    let DiscLink = createMenuButton('Discord server Here : [OFF]', panel);
+    DiscLink.onclick = function() {
+        let isOn = DiscLink.innerHTML.includes('[OFF]');
+        window.open('https://discord.gg/dSGFwAXQF', '_blank');
+        DiscLink.style.backgroundColor = isOn ? 'green' : 'rgba(0,0,0,0.7)';
+        DiscLink.innerHTML = isOn ? 'Discord link : [ON]' : 'Discord link : [OFF]';
+        debug(isOn ? 'Discord link open | Home' : 'Discord link open | Home');
+    };
+    let btncps = createMenuButton('CPS Shower : [OFF]', panel3);
+    btncps.onclick = function() {
+        let isOn = btncps.innerHTML.includes('[OFF]');
+        btncps.innerHTML = isOn ? 'CPS Shower : [ON]' : 'CPS Shower : [OFF]';
+        btncps.style.backgroundColor = isOn ? 'green' : '#222';
+        debug(isOn ? 'cps shower ON | Combat' : 'cps shower OFF | Combat')
+    };
+
+    let btnaim = createMenuButton('Fake Aim Assist : [OFF]', panel3);
+    btnaim.onclick = function() {
+        let isOn = btnaim.innerHTML.includes('[OFF]');
+        btnaim.innerHTML = isOn ? 'Fake Aim Assist : [ON]' : 'Fake Aim Assist : [OFF]';
+        btnaim.style.backgroundColor = isOn ? 'green' : '#222';
+        aimtext.style.display = isOn ? 'block' : 'none';
+        debug(isOn ? 'Custom aim ON | Visuals' : 'Custom aim OFF| Visuals');
+    };
+    let btnauto = createMenuButton('Autoclicker : [OFF]', panel2);
+    let clics = null;
+    btnauto.onclick = function() {
+        if (clics === null) {
+            clics = setInterval(() => {
+                let game = document.querySelector('canvas');
+                if (game) {
+                    const x = window.innerWidth / 2 + (Math.random() * 4 - 2);
+                    const y = window.innerHeight / 2 + (Math.random() * 4 - 2);
+                    const opts = { bubbles: true, button: 0, clientX: x, clientY: y };
+                    game.dispatchEvent(new MouseEvent('mousedown', opts));
+                    game.dispatchEvent(new MouseEvent('mouseup', opts));
+                }
+            }, 33); // 30 CPS
+            debug('autoclicker ON | Combat');
+            alert('sry autoclicker is not working😞.use Fast place but before bind e key to attack controls in bloxd.io settings. now u have an auto and u can FINALY use Fast place as a autoclicker!😀');
+            btnauto.innerHTML = 'Autoclicker : [ON]';
+            btnauto.style.backgroundColor = 'green';
+        } else {
+            clearInterval(clics);
+            clics = null;
+            debug('autoclicker OFF | Combat');
+            btnauto.innerHTML = 'Autoclicker : [OFF]';
+            btnauto.style.backgroundColor = '#222';
+        }
+    };
+
+
+    let btnAutoE = createMenuButton('Fast place [E] : [OFF]', panel2);
+    let eInterval = null;
+    btnAutoE.onclick = function() {
+        if (eInterval === null) {
+            eInterval = setInterval(() => {
+                const container = { key: 'e', code: 'KeyE', keyCode: 69, bubbles: true };
+                document.dispatchEvent(new KeyboardEvent('keydown', container));
+                document.dispatchEvent(new KeyboardEvent('keyup', container));
+                 document.dispatchEvent(new KeyboardEvent('keydown', container));
+                document.dispatchEvent(new KeyboardEvent('keyup', container));
+            }, 25);// 40cps💀
+            btnAutoE.innerHTML = 'Fast place [E] : [ON]';
+            btnAutoE.style.backgroundColor = 'green';
+            debug('Fast place ON | Combat');
+        } else {
+            clearInterval(eInterval);
+            eInterval = null;
+            debug('Fast place OFF | Combat');
+            btnAutoE.innerHTML = 'Fast place [E] : [OFF]';
+            btnAutoE.style.backgroundColor = '#222';
+        }
+    };
+
+
+    let titleBtn = createMenuButton('Pixel Title : [OFF]', panel3);
+    titleBtn.onclick = function() {
+        let isOn = titleBtn.innerHTML.includes('[OFF]');
+        titleBtn.innerHTML = isOn ? 'Pixel Title : [ON]' : 'Pixel Title : [OFF]';
+        titleBtn.style.backgroundColor = isOn ? 'green' : '#222';
+        text.style.display = isOn ? 'block' : 'none';
+        debug(isOn ? 'PixelTitle ON | Visuals' : 'Pixel title OFF | Visuals');
+    };
+
+
+    const text = document.createElement('div');
+    text.textContent = 'Pixel Client V1.5';
+    text.style.position = 'fixed';
+    text.style.top = '5%';
+    text.style.left = '55%';
+    text.style.transform = 'translate(-50%, -50%)';
+    text.style.zIndex = '9999';
+    text.style.color = 'cyan';
+    text.style.fontSize = '35px';
+    text.style.fontWeight = 'bold';
+    text.style.textShadow = '5px 5px 10px black';
+    text.style.pointerEvents = 'none';
+    text.style.display = 'none';
+    document.body.appendChild(text);
+
+    const aimtext = document.createElement('div');
+    aimtext.textContent = '⁜';
+    aimtext.style.position = 'fixed';
+    aimtext.style.top = '49%';
+    aimtext.style.left = '50%';
+    aimtext.style.transform = 'translate(-50%, -50%)';
+    aimtext.style.color = 'rgba(255, 0, 0, 0.7)';
+    aimtext.style.zIndex = '999999';
+    aimtext.style.fontSize = '45px';
+    aimtext.style.pointerEvents = 'none';
+    aimtext.style.display = 'none';
+    document.body.appendChild(aimtext);
+
+    const logo = document.createElement('img');
+    logo.src = 'https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png';
+    logo.style.position = 'fixed';
+    logo.style.left = '84%';
+    logo.style.top = '7%';
+    logo.style.width = '100px';
+    logo.style.height = '100px';
+    logo.style.transform = 'translate(-50%, -50%)';
+    logo.style.pointerEvents = 'none';
+    logo.style.display = 'none';
+    logo.style.zIndex = '1000000';
+    document.body.appendChild(logo);
+
+    const pixeltxt = document.createElement('div');
+    pixeltxt.innerText = 'ixel v1.5';
+    pixeltxt.style.position = 'fixed';
+    pixeltxt.style.top = '10%';
+    pixeltxt.style.left = '90%';
+    pixeltxt.style.transform = 'translate(-50%, -50%)'
+    pixeltxt.style.color = 'white';
+    pixeltxt.style.zIndex = '1000000';
+    pixeltxt.style.textShadow = '2px 2px 4px black';
+    pixeltxt.style.fontSize = '30px';
+    pixeltxt.style.display = 'none';
+    pixeltxt.style.pointerEvents = 'none';
+    document.body.appendChild(pixeltxt);
+
+     let Xbtn = createMenuButton('CLOSE', panel);
+    Xbtn.style.border = '1px solid red';
+    Xbtn.style.marginTop = '15px';
+    Xbtn.onclick = function() {
+        panel.style.display = 'none';
+        panel2.style.display = 'none';
+        panel3.style.display = 'none';
+        myButton.innerHTML = 'Menu OFF';
+        myButton.style.backgroundColor = 'red';
+        debug('menu OFF');
+        panel.appendChild(Xbtn);
+    };
+})();
