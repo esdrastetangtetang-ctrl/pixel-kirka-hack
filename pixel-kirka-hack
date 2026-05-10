@@ -92,7 +92,7 @@ window.eng = null;
     Xpixel.style.transform = 'transform(-50%, -50%)';
     Xpixel.style.backgroundColor = 'rgba(0, 50, 65, 1)';
     Xpixel.style.color = 'blue';
-    Xpixel.style.borderRadius = '15px';
+    Xpixel.style.borderRadius = '35px';
     Xpixel.style.border = '5px solid cyan';
     Xpixel.style.padding = '5px';
     Xpixel.style.zIndex = '100000';
@@ -106,7 +106,7 @@ window.eng = null;
         panel.style.display = 'block';
         logo2.style.display = 'none';
         logo.style.display = 'block';
-        pixeltxt.style.display = 'block';
+       
     };
 
 
@@ -116,25 +116,23 @@ window.eng = null;
     myButton.innerHTML = 'Menu OFF';
     myButton.style.position = 'fixed';
     myButton.style.top = '20px';
-    myButton.style.left = '500px';
+    myButton.style.left = '200px';
     myButton.style.color = 'white';
     myButton.style.zIndex = '10000';
     myButton.style.padding = '10px';
     myButton.style.cursor = 'pointer';
     myButton.style.backgroundColor = 'red';
     myButton.style.border = 'none';
-    myButton.style.borderRadius = '5px';
+    myButton.style.borderRadius = '15px';
     myButton.style.boxShadow = '5px 5px 10px black';
     myButton.style.fontWeight = 'bold';
     document.body.appendChild(myButton);
 
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Shift') {
-            const panel = document.getElementById('pixel-client-home');
-
-            if (panel) {
-            panel.classList.toggle('hidden');
-            }
+        if (event.key === 'e') {
+            panel.style.display = 'block';
+        } else {
+            panel.style.display = 'none';
         }
     });
 
@@ -264,18 +262,20 @@ window.eng = null;
         btn.style.marginTop = '8px';
         btn.style.cursor = 'pointer';
         btn.style.borderRadius = '15px';
+        btn.style.textShadow = '5px 5px 10px cyan';
+        btn.style.boxShadow = '2px 2px 4px cyan';
         btn.style.transition = '0.3s';
         parentPanel.appendChild(btn);
         return btn;
     }
-    let ESP = createMenuButton('ESP AYWAYS ON (only for kirka.io)', panel3);
+    let ESP = createMenuButton('Wallhack AYWAYS ON (only for kirka.io)', panel3);
     ESP.onclick = function() {
         if (window.eng) {
-        debug('ESP ON | Visuals');
+        debug('WallHack ON | Visuals');
             window.espEnabled = true;
         } else {
             window.espEnabled = false;
-            debug('still trying to hack to give u ESP...');
+            debug('ERROR no Wallhack...');
         }
     }
 
@@ -467,7 +467,7 @@ window.eng = null;
     const logo = document.createElement('img');
     logo.src = 'https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png';
     logo.style.position = 'fixed';
-    logo.style.left = '84%';
+    logo.style.left = '90%';
     logo.style.top = '7%';
     logo.style.width = '100px';
     logo.style.height = '100px';
@@ -476,20 +476,6 @@ window.eng = null;
     logo.style.display = 'none';
     logo.style.zIndex = '1000000';
     document.body.appendChild(logo);
-
-    const pixeltxt = document.createElement('div');
-    pixeltxt.innerText = 'ixel v1.5';
-    pixeltxt.style.position = 'fixed';
-    pixeltxt.style.top = '10%';
-    pixeltxt.style.left = '90%';
-    pixeltxt.style.transform = 'translate(-50%, -50%)'
-    pixeltxt.style.color = 'white';
-    pixeltxt.style.zIndex = '1000000';
-    pixeltxt.style.textShadow = '2px 2px 4px black';
-    pixeltxt.style.fontSize = '30px';
-    pixeltxt.style.display = 'none';
-    pixeltxt.style.pointerEvents = 'none';
-    document.body.appendChild(pixeltxt);
 
      let Xbtn = createMenuButton('CLOSE', panel);
     Xbtn.style.border = '1px solid red';
