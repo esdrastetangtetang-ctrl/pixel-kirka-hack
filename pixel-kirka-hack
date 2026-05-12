@@ -128,13 +128,7 @@ window.eng = null;
     myButton.style.fontWeight = 'bold';
     document.body.appendChild(myButton);
 
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'e') {
-            panel.style.display = 'block';
-        } else {
-            panel.style.display = 'none';
-        }
-    });
+   
 
      const panel = document.createElement('div');
     panel.id = 'pixel-client-home';
