@@ -413,7 +413,7 @@ let captured = false;
     let DiscLink = createMenuButton('Discord server Here : [OFF]', panel);
     DiscLink.onclick = function() {
         let isOn = DiscLink.innerHTML.includes('[OFF]');
-        window.open('https://discord.gg/dSGFwAXQF', '_blank');
+        window.open('https://discord.gg/ZNNupNPpG', '_blank');
         DiscLink.style.backgroundColor = isOn ? 'green' : 'rgba(0,0,0,0.7)';
         DiscLink.innerHTML = isOn ? 'Discord link : [ON]' : 'Discord link : [OFF]';
         debug(isOn ? 'Discord link open | Home' : 'Discord link open | Home');
