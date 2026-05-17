@@ -7,16 +7,19 @@
 // @match        https://*.bloxd.io/*
 // @match        https://*.kirka.io/*
 // @match        https://*bloxd.com/*
+// @match        https://*.vectaria.io/*
 // @match        https://*playbloxd.io/*
 // @icon         https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png
 // @grant        none
+// @run-at       document-start
 // ==/UserScript==
 
 let btn, Gitlink, hud
 window.onerror = function() {
     alert('SRY there is a problem');
 };
- // trying to hack the engine of kirka.io .please don't delete or add something only if u know what u are doing...
+
+ // trying to hack the engine of kirka.io .please don't delete or add something only if u know what u are doing...btw its wallhack here
 window.espEnabled = true;
 window.eng = null;
 
@@ -30,7 +33,7 @@ window.eng = null;
                     if (material[Mkey] === 3) {
                         material[Mkey] = 1;
                         if (!window.eng) {
-                            alert('✅Kirka Engine captured, now cheats✅');
+                           alert('✅KIRKA IS SUCCSFULLY HACKED, ALL HACKS ARE WORKING✅');
                             console.log('Kirka Engine captured, arguments:', args);
                             window.eng = material;
                             break;
@@ -42,8 +45,27 @@ window.eng = null;
 
         }
     });
+// HOOK FOR VECTARIA.IO
+let captured = false;
 
+    window.WebSocket = new Proxy (WebSocket, {
+        construct(target, args) {
+            const ws = new target(...args);
+            const WSeng = args[0];
+            if (typeof WSeng === 'string' && WSeng.includes('wss://ws.vectaria.io')) {
+                window.WS = WSeng;
+                if (!captured) {
+            alert('VECTARIA IS SUCCEFULLY HACKED! TEST 8');
+            console.log('VECTARIA IS SUCCEFULLY HACKED!, arguments:', WSeng);
+                captured = true;
+                }
+            }
+            return ws;
+        }
+    });
+// all is just UI
 (() => {
+
 
     const panele = document.createElement('div');
     panele.id = 'pixel-client-loading';
@@ -89,10 +111,11 @@ window.eng = null;
     Xpixel.style.position = 'fixed';
     Xpixel.style.top = '70%';
     Xpixel.style.left = '50%';
-    Xpixel.style.transform = 'transform(-50%, -50%)';
+    Xpixel.style.transform = 'translate(-50%, -50%)';
     Xpixel.style.backgroundColor = 'rgba(0, 50, 65, 1)';
-    Xpixel.style.color = 'blue';
-    Xpixel.style.borderRadius = '35px';
+    Xpixel.style.color = 'white';
+    Xpixel.style.textShadow = '2px 2px 4px white';
+    Xpixel.style.borderRadius = '15px';
     Xpixel.style.border = '5px solid cyan';
     Xpixel.style.padding = '5px';
     Xpixel.style.zIndex = '100000';
@@ -101,12 +124,9 @@ window.eng = null;
     Xpixel.onclick = function() {
         panele.style.display = 'none';
         Xpixel.style.display = 'none';
-        panel2.style.display = 'block';
-        panel3.style.display = 'block';
-        panel.style.display = 'block';
         logo2.style.display = 'none';
         logo.style.display = 'block';
-       
+        pixeltxt.style.display = 'block';
     };
 
 
@@ -123,12 +143,12 @@ window.eng = null;
     myButton.style.cursor = 'pointer';
     myButton.style.backgroundColor = 'red';
     myButton.style.border = 'none';
-    myButton.style.borderRadius = '15px';
+    myButton.style.borderRadius = '25px';
     myButton.style.boxShadow = '5px 5px 10px black';
     myButton.style.fontWeight = 'bold';
     document.body.appendChild(myButton);
 
-   
+  
 
      const panel = document.createElement('div');
     panel.id = 'pixel-client-home';
@@ -143,11 +163,28 @@ window.eng = null;
     panel.style.height = '420px';
     panel.style.boxShadow = '5px 5px 10px black';
     panel.style.border = '2px solid cyan';
-    panel.style.borderRadius = '15px';
+    panel.style.borderRadius = '20px';
     panel.style.fontFamily = 'monospace';
     panel.style.display = 'none';
     panel.innerHTML = 'Home - Subscribe to @cartoon-bloxd❤️';
     document.body.appendChild(panel);
+
+    const BlurScreen = document.createElement('div');
+    BlurScreen.id = 'pixel-blur-screen';
+    BlurScreen.style = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    display: none;
+    pointer-events: none;
+    `;
+    document.body.appendChild(BlurScreen);
 
      const panel3 = document.createElement('div');
     panel3.id = 'pixel-movement';
@@ -162,7 +199,7 @@ window.eng = null;
     panel3.style.height = '420px';
     panel3.style.boxShadow = '5px 5px 10px black';
     panel3.style.border = '2px solid cyan';
-    panel3.style.borderRadius = '15px';
+    panel3.style.borderRadius = '20px';
     panel3.style.fontFamily = 'monospace';
     panel3.style.display = 'none';
     panel3.innerHTML = 'Visuals';
@@ -181,7 +218,7 @@ window.eng = null;
     hud.style.color = 'cyan';
     hud.style.fontSize = '35px';
     hud.style.padding = '2px';
-    hud.style.borderRadius = '10px';
+    hud.style.borderRadius = '15px';
     hud.style.border = '2px solid cyan';
     hud.style.padding = '5px';
     hud.style.boxShadow = '8px 8px 8px cyan';
@@ -221,7 +258,7 @@ window.eng = null;
     panel2.style.height = '420px';
     panel2.style.boxShadow = '5px 5px 10px black';
     panel2.style.border = '2px solid cyan';
-    panel2.style.borderRadius = '15px';
+    panel2.style.borderRadius = '20px';
     panel2.style.fontFamily = 'monospace';
     panel2.style.display = 'none';
     panel2.innerHTML = 'Combat';
@@ -234,6 +271,7 @@ window.eng = null;
             panel3.style.display = 'block';
             panel2.style.display = 'block';
             myButton.innerHTML = 'Menu ON';
+            BlurScreen.style.display = 'block';
             myButton.style.backgroundColor = 'green';
         } else {
             debug('menu OFF');
@@ -241,6 +279,7 @@ window.eng = null;
             panel2.style.display = 'none';
             panel3.style.display = 'none';
             myButton.innerHTML = 'Menu OFF';
+            BlurScreen.style.display = 'none';
             myButton.style.backgroundColor = 'red';
         }
     };
@@ -256,20 +295,47 @@ window.eng = null;
         btn.style.marginTop = '8px';
         btn.style.cursor = 'pointer';
         btn.style.borderRadius = '15px';
-        btn.style.textShadow = '5px 5px 10px cyan';
-        btn.style.boxShadow = '2px 2px 4px cyan';
         btn.style.transition = '0.3s';
         parentPanel.appendChild(btn);
         return btn;
     }
-    let ESP = createMenuButton('Wallhack AYWAYS ON (only for kirka.io)', panel3);
+
+    let SpeedHack = createMenuButton('SpeedHack : [ON]', panel2);
+    let SpeedEnabled = false
+    SpeedHack.onclick = function() {
+        if (!window.eng) {
+            debug('❌Hacks are not ready');
+            alert('sorry Hacks are not ready.pls refresh the page and use tampermonkey');
+            return;
+        }
+          // the part for erors of speed hack
+        try {
+        SpeedEnabled = !SpeedEnabled
+            if (SpeedEnabled) {
+                if (window.eng.walkSpeed > 0) {
+                window.eng.walkSpeed = 2.0;
+                    SpeedHack.style.backgroundColor = 'green';
+                    debug('WALKSPEED IS NOW x2.0✅'); 
+                } else {
+                    debug('WALKSPEED IS NOW x1.0✅');
+                    window.eng.walkSpeed = 1.0;
+                    SpeedHack.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                }
+            }
+            } catch (error) {
+                debug('⚠️ERROR speedHack !⚠️');
+                console.error(error);
+            }
+        }
+
+    let ESP = createMenuButton('ESP AYWAYS ON (only for kirka.io)', panel3);
     ESP.onclick = function() {
         if (window.eng) {
-        debug('WallHack ON | Visuals');
+        debug('ESP ON | Visuals');
             window.espEnabled = true;
         } else {
             window.espEnabled = false;
-            debug('ERROR no Wallhack...');
+            debug('ERROR NO WALLHACK...');
         }
     }
 
@@ -299,7 +365,7 @@ window.eng = null;
         const color = On ? 'green' : 'cyan';
         [panel, panel2, panel3].forEach(p => {
             p.style.border = `5px solid ${color}`;
-            p.style.boxShadow = '2px solid %{color}';
+            p.style.boxShadow = `2px solid ${color}`;
         });
         document.querySelectorAll('button').forEach(a => {
             a.style.border = `2px solid ${color}`;
@@ -316,7 +382,7 @@ window.eng = null;
         const color = isOn ? 'red' : 'cyan';
         [panel, panel2, panel3].forEach(p => {
             p.style.border = `5px solid ${color}`;
-            p.style.boxShadow = '2px solid %{color}';
+            p.style.boxShadow = `2px solid ${color}`;
         });
         document.querySelectorAll('button').forEach(a => {
             a.style.border = `2px solid ${color}`;
@@ -368,35 +434,35 @@ window.eng = null;
         aimtext.style.display = isOn ? 'block' : 'none';
         debug(isOn ? 'Custom aim ON | Visuals' : 'Custom aim OFF| Visuals');
     };
-    let btnauto = createMenuButton('Autoclicker : [OFF]', panel2);
+    let btnauto = createMenuButton('Auto-Strafing : [OFF]', panel2);
     let clics = null;
     btnauto.onclick = function() {
         if (clics === null) {
             clics = setInterval(() => {
-                let game = document.querySelector('canvas');
+                let game = true;
                 if (game) {
-                    const x = window.innerWidth / 2 + (Math.random() * 4 - 2);
-                    const y = window.innerHeight / 2 + (Math.random() * 4 - 2);
-                    const opts = { bubbles: true, button: 0, clientX: x, clientY: y };
-                    game.dispatchEvent(new MouseEvent('mousedown', opts));
-                    game.dispatchEvent(new MouseEvent('mouseup', opts));
+                    const opts = { key: 'a', keyCode: 'keyA', keyCode: 65, which: 65, bubbles: true};
+                    const opts2 = { key: 'd', keyCode: 'keyD', keyCode: 68, which: 68, bubbles: true};
+                    document.dispatchEvent(new KeyboardEvent('keydown', opts));
+                    document.dispatchEvent(new KeyboardEvent('keyup', opts));
+                    document.dispatchEvent(new KeyboardEvent('keydown', opts2));
+                    document.dispatchEvent(new KeyboardEvent('keyup', opts2));
                 }
-            }, 33); // 30 CPS
-            debug('autoclicker ON | Combat');
-            alert('sry autoclicker is not working😞.use Fast place but before bind e key to attack controls in bloxd.io settings. now u have an auto and u can FINALY use Fast place as a autoclicker!😀');
-            btnauto.innerHTML = 'Autoclicker : [ON]';
+            }, 250); //
+            debug('Auto-Strafing ON | Combat');
+            btnauto.innerHTML = 'Auto-Strafing : [ON]';
             btnauto.style.backgroundColor = 'green';
         } else {
             clearInterval(clics);
             clics = null;
-            debug('autoclicker OFF | Combat');
-            btnauto.innerHTML = 'Autoclicker : [OFF]';
+            debug('Auto-Strafing OFF | Combat');
+            btnauto.innerHTML = 'Auto-Strafing : [OFF]';
             btnauto.style.backgroundColor = '#222';
         }
     };
 
 
-    let btnAutoE = createMenuButton('Fast place [E] : [OFF]', panel2);
+    let btnAutoE = createMenuButton('AutoDash: [OFF]', panel2);
     let eInterval = null;
     btnAutoE.onclick = function() {
         if (eInterval === null) {
@@ -406,14 +472,14 @@ window.eng = null;
                 document.dispatchEvent(new KeyboardEvent('keyup', container));
                  document.dispatchEvent(new KeyboardEvent('keydown', container));
                 document.dispatchEvent(new KeyboardEvent('keyup', container));
-            }, 25);// 40cps💀
-            btnAutoE.innerHTML = 'Fast place [E] : [ON]';
+            }, 50);// 20cps�
+            btnAutoE.innerHTML = 'AutoDash [E] : [ON]';
             btnAutoE.style.backgroundColor = 'green';
-            debug('Fast place ON | Combat');
+            debug('AutoDash ON | Combat');
         } else {
             clearInterval(eInterval);
             eInterval = null;
-            debug('Fast place OFF | Combat');
+            debug('AutoDash OFF | Combat');
             btnAutoE.innerHTML = 'Fast place [E] : [OFF]';
             btnAutoE.style.backgroundColor = '#222';
         }
@@ -461,7 +527,7 @@ window.eng = null;
     const logo = document.createElement('img');
     logo.src = 'https://png.pngtree.com/png-clipart/20220918/original/pngtree-letter-p-icon-png-image_8622509.png';
     logo.style.position = 'fixed';
-    logo.style.left = '90%';
+    logo.style.left = '84%';
     logo.style.top = '7%';
     logo.style.width = '100px';
     logo.style.height = '100px';
@@ -471,6 +537,20 @@ window.eng = null;
     logo.style.zIndex = '1000000';
     document.body.appendChild(logo);
 
+    const pixeltxt = document.createElement('div');
+    pixeltxt.innerText = 'ixel v1.5';
+    pixeltxt.style.position = 'fixed';
+    pixeltxt.style.top = '10%';
+    pixeltxt.style.left = '90%';
+    pixeltxt.style.transform = 'translate(-50%, -50%)'
+    pixeltxt.style.color = 'white';
+    pixeltxt.style.zIndex = '1000000';
+    pixeltxt.style.textShadow = '2px 2px 4px black';
+    pixeltxt.style.fontSize = '30px';
+    pixeltxt.style.display = 'none';
+    pixeltxt.style.pointerEvents = 'none';
+    document.body.appendChild(pixeltxt);
+
      let Xbtn = createMenuButton('CLOSE', panel);
     Xbtn.style.border = '1px solid red';
     Xbtn.style.marginTop = '15px';
@@ -479,6 +559,7 @@ window.eng = null;
         panel2.style.display = 'none';
         panel3.style.display = 'none';
         myButton.innerHTML = 'Menu OFF';
+        BlurScreen.style.display = 'none';
         myButton.style.backgroundColor = 'red';
         debug('menu OFF');
         panel.appendChild(Xbtn);
