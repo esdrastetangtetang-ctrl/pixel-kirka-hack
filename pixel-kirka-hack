@@ -29,6 +29,9 @@ window.eng = null;
             const result = Reflect.apply(target, thisArg, args);
         if (window.espEnabled && material?.map?.image?.width === 64) {
         material.depthTest = false;
+            material.map = null;
+            material.needsUpdate = true;
+             if (material.color && typeof material.color.setHex === 'function') material.color.setHex(0xff0000);
                 for (let Mkey in material) {
                     if (material[Mkey] === 3) {
                         material[Mkey] = 1;
