@@ -29,6 +29,11 @@ window.eng = null;
             const result = Reflect.apply(target, thisArg, args);
         if (window.espEnabled && material?.map?.image?.width === 64) {
         material.depthTest = false;
+            if (!window.eng) {
+                window.eng = material;
+               console.log('engine captured, injection succefull');
+                alert('engine captured, injection succefull');
+            }
                 }
             return result;
 
