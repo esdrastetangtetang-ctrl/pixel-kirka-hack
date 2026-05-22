@@ -29,11 +29,17 @@ window.eng = null;
             const result = Reflect.apply(target, thisArg, args);
         if (window.espEnabled && material?.map?.image?.width === 64) {
         material.depthTest = false;
-            if (!window.eng) {
-                window.eng = material;
-               console.log('engine captured, injection succefull');
-                alert('engine captured, injection succefull');
-            }
+                for (let Mkey in material) {
+                    if (material[Mkey] === 3) {
+                        material[Mkey] = 1;
+                        if (!window.eng) {
+                            alert('✅KIRKA IS SUCCSFULLY HACKED, ALL HACKS ARE WORKING✅');
+                            console.log('Kirka Engine captured, arguments:', args);
+                            window.eng = material;
+                            break;
+                        }
+                        }
+                    }
                 }
             return result;
 
