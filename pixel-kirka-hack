@@ -4,7 +4,7 @@
 // @version      2026-05-23
 // @description  try to take over the world!
 // @author       You
-// @match        https://.kirka.io/*
+// @match        https://kirka.io/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
