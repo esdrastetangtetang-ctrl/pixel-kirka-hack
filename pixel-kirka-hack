@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         PIXEL CLIENT FOR KIRKA.IO
 // @namespace    http://tampermonkey.net/
-// @version      2026-05-23
-// @description  try to take over the world!
-// @author       You
+// @version      2.0
+// @description  closet cheat client for kirka.io
+// @author       @cartoon-bloxd on Youtube. im a YTber
 // @match        https://kirka.io/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
